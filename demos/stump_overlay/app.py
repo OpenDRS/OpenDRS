@@ -1,6 +1,5 @@
 import cv2 as cv;
 import sys;
-import numpy;
 
 sample_video_path = "D:\Films\cricket footage\MVI_2654.mp4"
 sample_image_path = "resources/tommy.png"
