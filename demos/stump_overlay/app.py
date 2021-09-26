@@ -2,13 +2,27 @@ import cv2 as cv;
 import sys;
 import numpy;
 
-print(numpy.__file__)
+sample_video_path = "D:\Films\cricket footage\MVI_2654.mp4"
+sample_image_path = "resources/tommy.png"
 
-img = cv.imread(cv.samples.findFile("resources/tommy.png"))
+def showImage(path):
+    img = cv.imread(cv.samples.findFile(path))
+    if img is None:
+        sys.exit("Could not read the image.")
+    cv.imshow("Image Window", img)
 
-if img is None:
-    sys.exit("Could not read the image.")
+def showVideo(path):
+    vid = cv.VideoCapture(path)
+    
+    while vid.isOpened():
+        ret, frame = vid.read()
 
-cv.imshow("Image Window", img)
+        if not ret:
+            print("Can't receive frame (end of video?). Exiting...")
+            break
+        cv.imshow('frame', frame)
+        if cv.waitKey(1) == ord('q'):
+            break
 
-k = cv.waitKey(0)
+
+showVideo(sample_video_path)
